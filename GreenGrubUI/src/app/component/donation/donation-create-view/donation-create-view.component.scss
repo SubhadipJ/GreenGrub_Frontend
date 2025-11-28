@@ -1,0 +1,70 @@
+:host { display:block; font-family: Inter, system-ui, Arial, sans-serif; color:#222; }
+
+.donation-create-page { padding: 20px; max-width:1100px; margin:0 auto; }
+.donation-layout { display:flex; gap:18px; align-items:flex-start; }
+
+/* left / right */
+.donation-left { flex:1; }
+.donation-right { width:300px; }
+
+.card { background:#fff; border-radius:10px; padding:14px; box-shadow:0 8px 24px rgba(10,10,20,0.04); }
+
+.donation-info label { display:block; margin-top:8px; font-weight:600; font-size:13px; }
+.donation-info input, .donation-info textarea { width:100%; padding:8px 10px; margin-top:6px; border-radius:6px; border:1px solid #e6e6f0; }
+
+.added-foods .section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.right-actions { display:flex; gap:8px; }
+
+.btn { padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; }
+.btn.primary { background:#2563eb; color:white; border-color:transparent; }
+.btn.success { background:#10b981; color:white; border-color:transparent; }
+.btn.danger { background:#ef4444; color:white; border-color:transparent; }
+
+.food-grid { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+.food-card { display:flex; gap:10px; width:calc(50% - 12px); background:#fafafa; padding:8px; border-radius:8px; align-items:center; }
+.food-card .thumb { width:72px; height:72px; overflow:hidden; border-radius:8px; background:#eee; }
+.food-card .thumb img { width:100%; height:100%; object-fit:cover; }
+.food-card .info .title { font-weight:700; }
+.food-card .info .meta { color:#666; font-size:13px; }
+.food-card .info .actions { margin-top:6px; }
+.food-card .link { background:transparent; border:none; color:#2563eb; cursor:pointer; margin-right:8px; }
+.food-card .link.danger { color:#ef4444; }
+
+/* right summary preview */
+.preview-list { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+.preview-list .mini { width:72px; text-align:center; font-size:12px; }
+.preview-list img { width:72px; height:72px; object-fit:cover; border-radius:6px; }
+
+/* modal */
+.modal-backdrop { position:fixed; inset:0; background:rgba(10,10,20,0.45); display:flex; justify-content:center; align-items:flex-start; padding:40px 18px; z-index:1000; }
+.modal { background:#fff; padding:16px; border-radius:10px; width:720px; max-width:100%; box-shadow:0 20px 50px rgba(10,10,30,0.3); }
+.modal.wide { width:900px; max-width: calc(100% - 40px); }
+.modal h3 { margin-top:0; }
+.modal label { display:block; margin-top:8px; font-weight:600; }
+.modal input, .modal textarea, .modal select { width:100%; padding:8px 10px; margin-top:6px; border-radius:6px; border:1px solid #e6e6f0; }
+
+/* create previews */
+.preview-row { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+.preview { position:relative; width:88px; height:88px; border-radius:8px; overflow:hidden; }
+.preview img { width:100%; height:100%; object-fit:cover; display:block; }
+.preview .rm { position:absolute; top:6px; right:6px; background:rgba(255,255,255,0.9); border:none; border-radius:50%; width:22px; height:22px; cursor:pointer; }
+
+/* all foods browse */
+.all-foods { max-height:60vh; overflow:auto; margin-top:8px; }
+.food-row { display:flex; gap:12px; padding:8px 0; border-bottom:1px dashed #f1f1f1; align-items:center; }
+.food-row .fleft img { width:84px; height:64px; object-fit:cover; border-radius:6px; }
+.food-row .fright .title { font-weight:700 }
+
+/* view modal */
+.view-grid { display:flex; gap:12px; }
+.view-grid .left img { width:240px; height:160px; object-fit:cover; border-radius:8px; }
+.view-grid .right { flex:1; }
+
+.modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
+
+/* responsive */
+@media (max-width: 900px) {
+  .donation-layout { flex-direction:column; }
+  .food-card { width:100%; }
+  .modal { width:95%; }
+}

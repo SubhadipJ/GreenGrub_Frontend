@@ -1,0 +1,149 @@
+<div class="donation-page">
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h1 class="title">{{ donation.title }}</h1>
+        <div class="sub">
+          <span class="muted">Donor:</span> {{ donation.donor.name }}
+          <span class="dot">•</span>
+          <span class="muted">Date:</span> {{ donation.date | date:'medium' }}
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="status" [ngClass]="statusClass(donation.status)">
+          {{ donation.status | titlecase }}
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" (click)="toggleEdit()">
+            {{ editMode ? 'Cancel' : 'Edit' }}
+          </button>
+          <button class="btn primary" (click)="confirmSave()" [disabled]="!editMode">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- Left column: images + items -->
+      <div class="left">
+
+        <!-- Carousel -->
+        <div class="carousel" *ngIf="donation.images?.length">
+          <img [src]="donation.images[currentImage]" alt="donation image" />
+          <button class="nav left" (click)="prevImage()">‹</button>
+          <button class="nav right" (click)="nextImage()">›</button>
+          <div class="dots">
+            <span *ngFor="let img of donation.images; index as i"
+                  [class.active]="i === currentImage"
+                  (click)="goToImage(i)"></span>
+          </div>
+        </div>
+
+        <!-- Items list -->
+        <div class="section">
+          <h3>Items Included</h3>
+          <ul class="items">
+            <li *ngFor="let item of donation.items">
+              <div class="item-left">
+                <strong>{{ item.name }}</strong>
+                <div class="muted small">{{ item.desc }}</div>
+              </div>
+              <div class="item-right">
+                <span class="qty">{{ item.quantity }} {{ item.unit }}</span>
+                <span class="chip" [class.veg]="item.foodType==='veg'"
+                      [class.nonveg]="item.foodType==='non-veg'">
+                  {{ item.foodType }}
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Right column: donor + pickup + timeline -->
+      <div class="right-col">
+
+        <!-- Donor info -->
+        <div class="section card-block">
+          <h4>Donor</h4>
+          <div class="donor">
+            <div class="avatar">{{ donorInitials(donation.donor.name) }}</div>
+            <div>
+              <div class="donor-name">{{ donation.donor.name }}</div>
+              <div class="muted">{{ donation.donor.phone }}</div>
+              <div class="muted">{{ donation.donor.email }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pickup details -->
+        <div class="section card-block">
+          <h4>Pickup</h4>
+
+          <div *ngIf="!editMode">
+            <div class="muted small">Address</div>
+            <div class="address">{{ donation.pickup.address }}</div>
+
+            <div class="muted small" style="margin-top:8px;">Preferred time</div>
+            <div>{{ donation.pickup.time }}</div>
+          </div>
+
+          <!-- Edit fields -->
+          <div *ngIf="editMode" class="edit-grid">
+            <label>Address</label>
+            <textarea [(ngModel)]="draft.pickup.address" rows="2"></textarea>
+
+            <label>Preferred time</label>
+            <input type="text" [(ngModel)]="draft.pickup.time" />
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="section card-block">
+          <h4>Notes</h4>
+
+          <div *ngIf="!editMode">
+            <p class="notes">{{ donation.notes || '—' }}</p>
+          </div>
+
+          <div *ngIf="editMode">
+            <textarea rows="3" [(ngModel)]="draft.notes"></textarea>
+          </div>
+        </div>
+
+        <!-- Timeline / status actions -->
+        <div class="section actions-block">
+          <h4>Actions</h4>
+
+          <div class="action-buttons">
+            <button class="btn accept" (click)="confirmAction('accept')"
+                    [disabled]="donation.status !== 'pending'">Accept</button>
+
+            <button class="btn warn" (click)="confirmAction('reject')"
+                    [disabled]="donation.status !== 'pending'">Reject</button>
+
+            <button class="btn success" (click)="confirmAction('picked_up')"
+                    [disabled]="donation.status !== 'accepted'">Mark Picked Up</button>
+          </div>
+
+          <div class="timeline">
+            <div *ngFor="let t of donation.history" class="timeline-item">
+              <div class="time">{{ t.time | date:'short' }}</div>
+              <div class="event">{{ t.event }}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

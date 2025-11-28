@@ -1,0 +1,170 @@
+<div class="donation-create-page">
+
+  <h2>Create Donation</h2>
+
+  <div class="donation-layout">
+
+    <!-- Left: donation info + added foods -->
+    <div class="donation-left">
+      <div class="donation-info card">
+        <label>Title</label>
+        <input id="title" [(ngModel)]="donation.title" placeholder="Donation title" />
+
+        <label>Pickup address</label>
+        <textarea id="pickupAddress" [(ngModel)]="donation.pickupAddress"></textarea>
+
+        <label>Notes</label>
+        <textarea id="note" [(ngModel)]="donation.notes"></textarea>
+      </div>
+
+      <div class="added-foods card">
+        <div class="section-header">
+          <h3>Foods added to this donation ({{ donation.foods.length }})</h3>
+
+          <div class="right-actions">
+            <button id="browseFoodsBtn" class="btn" (click)="openBrowse()">Browse Foods</button>
+            <button id="createFoodBtn" class="btn primary" (click)="openCreate()">Create Food</button>
+          </div>
+        </div>
+
+        <div *ngIf="donation.foods.length === 0" class="empty">
+          No foods added yet — use <strong>Create Food</strong> or <strong>Browse Foods</strong>.
+        </div>
+
+        <div class="food-grid">
+          <div class="food-card" *ngFor="let f of donation.foods; let i = index">
+            <div class="thumb">
+              <img *ngIf="f.images?.length" [src]="f.images[0]" />
+            </div>
+            <div class="info">
+              <div class="title">{{ f.name }}</div>
+              <div class="meta">{{ f.quantity }} {{ f.unit }} • {{ f.foodType }}</div>
+              <div class="actions">
+                <button class="link" (click)="viewFood(f)">View</button>
+                <button class="link danger" (click)="removeFromDonation(i)">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button id="submitDonationBtn" class="btn success" (click)="createDonation()">Create Donation</button>
+      </div>
+    </div>
+
+    <!-- Right: placeholder preview / summary -->
+    <div class="donation-right card">
+      <h4>Donation Summary</h4>
+      <p><strong>Title:</strong> {{ donation.title || '—' }}</p>
+      <p><strong>Items:</strong> {{ donation.foods.length }}</p>
+      <p><strong>Pickup:</strong> {{ donation.pickupAddress || '—' }}</p>
+
+      <div class="preview-list">
+        <div class="mini" *ngFor="let f of donation.foods">
+          <img *ngIf="f.images?.length" [src]="f.images[0]" />
+          <div class="name">{{ f.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Food Modal -->
+<div class="modal-backdrop" *ngIf="showCreate">
+  <div class="modal">
+    <h3>Create Food</h3>
+
+    <form (ngSubmit)="saveNewFood()" #createForm="ngForm">
+      <label>Food Name *</label>
+      <input id="foodName" name="name" [(ngModel)]="createModel.name" required />
+
+      <label>Description</label>
+      <textarea id="foodDesc" name="desc" [(ngModel)]="createModel.desc"></textarea>
+
+      <div class="row">
+        <div>
+          <label>Quantity *</label>
+          <input id="foodQuantity" type="number" name="quantity" [(ngModel)]="createModel.quantity" required />
+        </div>
+        <div>
+          <label>Unit</label>
+          <select id="foodUnit" name="unit" [(ngModel)]="createModel.unit">
+            <option value="kg">kg</option>
+            <option value="serving">serving</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Food Type</label>
+      <div class="choices">
+        <button id="foodType" type="button" *ngFor="let t of foodTypes"
+                [class.sel]="createModel.foodType===t.value"
+                (click)="createModel.foodType = t.value">{{ t.label }}</button>
+      </div>
+
+      <label>Images</label>
+      <input type="file" accept="image/*" multiple (change)="onCreateImages($event)" />
+      <div class="preview-row">
+        <div class="preview" *ngFor="let p of createPreviews; let idx = index">
+          <img [src]="p" />
+          <button type="button" class="rm" (click)="removeCreatePreview(idx)">×</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn" (click)="closeCreate()">Cancel</button>
+        <button id="saveFoodBtn" type="submit" class="btn primary">Save & Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Browse Foods Modal -->
+<div class="modal-backdrop" *ngIf="showBrowse">
+  <div class="modal wide">
+    <h3>All Foods</h3>
+
+    <div class="all-foods">
+      <div class="food-row" *ngFor="let f of allFoods">
+        <div class="fleft">
+          <img *ngIf="f.images?.length" [src]="f.images[0]" />
+        </div>
+        <div class="fright">
+          <div class="title">{{ f.name }}</div>
+          <div class="meta">{{ f.quantity }} {{ f.unit }} • {{ f.foodType }}</div>
+          <div class="buttons">
+            <button class="add-food-donation-btn btn" (click)="addToDonation(f)">Add to donation</button>
+            <button class="btn link" (click)="viewFood(f)">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button id="food-row-close-btn" class="btn" (click)="closeBrowse()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Food Modal -->
+<div class="modal-backdrop" *ngIf="viewingFood">
+  <div class="modal">
+    <h3>{{ viewingFood.name }}</h3>
+    <div class="view-grid">
+      <div class="left">
+        <img *ngIf="viewingFood.images?.length" [src]="viewingFood.images[0]" />
+      </div>
+      <div class="right">
+        <p><strong>Quantity:</strong> {{ viewingFood.quantity }} {{ viewingFood.unit }}</p>
+        <p><strong>Type:</strong> {{ viewingFood.foodType }}</p>
+        <p>{{ viewingFood.desc }}</p>
+        <div class="modal-actions">
+          <button class="btn" (click)="closeView()">Close</button>
+          <button class="btn primary" (click)="addToDonation(viewingFood)">Add to donation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,65 @@
+<div class="food-detail-container">
+  <div class="food-card">
+
+    <!-- Image Carousel -->
+    <div class="carousel" *ngIf="food.images?.length">
+      <div class="carousel-inner">
+        <img [src]="food.images[currentImage]" alt="Food image" />
+      </div>
+      <button class="nav-btn left" (click)="prevImage()">‹</button>
+      <button class="nav-btn right" (click)="nextImage()">›</button>
+      <div class="dots">
+        <span *ngFor="let img of food.images; index as i"
+              [class.active]="i === currentImage"
+              (click)="goToImage(i)">
+        </span>
+      </div>
+    </div>
+
+    <!-- Details Form -->
+    <form class="details-form" (ngSubmit)="onSave()" #form="ngForm">
+
+      <div class="form-group">
+        <label for="name">Food Name</label>
+        <input id="name" name="name" type="text" [(ngModel)]="food.name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea id="desc" name="desc" rows="3" [(ngModel)]="food.desc"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="quantity">Quantity</label>
+          <input id="quantity" name="quantity" type="number" [(ngModel)]="food.quantity" min="0" />
+        </div>
+        <div class="form-group half">
+          <label for="unit">Unit</label>
+          <select id="unit" name="unit" [(ngModel)]="food.unit">
+            <option value="kg">Kilogram (kg)</option>
+            <option value="serving">Serving</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Food Type</label>
+        <div class="food-type-picker">
+          <button type="button"
+                  *ngFor="let type of foodTypes"
+                  [class.selected]="food.foodType === type.value"
+                  (click)="selectFoodType(type.value)">
+            {{ type.label }}
+          </button>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
