@@ -3,6 +3,7 @@ package com.greengrub.tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 public class CreateDonationTest {
@@ -12,8 +13,17 @@ public class CreateDonationTest {
     @BeforeClass
     public void setup() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+
+        // Configure Chrome options for headless Jenkins environment
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");                // run without GUI
+        options.addArguments("--no-sandbox");              // required on Linux servers
+        options.addArguments("--disable-dev-shm-usage");   // solves memory issues
+        options.addArguments("--disable-gpu");             // optional
+        options.addArguments("--window-size=1920,1080");   // ensures layout works
+
+        // Initialize driver with options
+        driver = new ChromeDriver(options);
     }
 
     @Test
