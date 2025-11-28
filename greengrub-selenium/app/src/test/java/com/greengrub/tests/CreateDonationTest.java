@@ -4,7 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+
+import java.time.Duration;
 
 public class CreateDonationTest {
 
@@ -16,23 +20,33 @@ public class CreateDonationTest {
 
         // Configure Chrome options for headless Jenkins environment
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");                // run without GUI
-        options.addArguments("--no-sandbox");              // required on Linux servers
-        options.addArguments("--disable-dev-shm-usage");   // solves memory issues
-        options.addArguments("--disable-gpu");             // optional
-        options.addArguments("--window-size=1920,1080");   // ensures layout works
+        options.addArguments("--headless=new");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
 
         // Initialize driver with options
         driver = new ChromeDriver(options);
+//
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
     }
 
     @Test
     public void createDonationWithFoods() throws InterruptedException {
 
         driver.get("http://localhost:4200/createDonation");
+        waitForAngularLoad(driver);
+
+        System.out.println("URL Loaded: " + driver.getCurrentUrl());
+
 
         // ---- Title ----
-        driver.findElement(By.id("title")).sendKeys("Evening Community Donation");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("title"))).sendKeys("Evening Community Donation");
+
 
         // ---- Pickup Address ----
         driver.findElement(By.id("pickupAddress"))
@@ -74,5 +88,14 @@ public class CreateDonationTest {
     public void teardown() {
         driver.quit();
     }
+
+    public void waitForAngularLoad(WebDriver driver) {
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(
+                webDriver -> ((JavascriptExecutor) webDriver)
+                        .executeScript("return document.readyState")
+                        .equals("complete")
+        );
+    }
+
 }
 
