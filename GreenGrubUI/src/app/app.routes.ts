@@ -7,6 +7,6 @@ import { DonationCreateViewComponent } from './component/donation/donation-creat
 export const routes: Routes = [
      { path: 'foodDetail', component: FoodDetailViewComponent },
      { path: 'createFood', component: FoodCreateViewComponent },
-     { path: '', component: DonationDetailViewComponent },
+     { path: 'donationDetail', component: DonationDetailViewComponent },
      { path: 'createDonation', component: DonationCreateViewComponent }
 ];

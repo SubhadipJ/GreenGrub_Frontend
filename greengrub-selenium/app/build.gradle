@@ -39,6 +39,9 @@ test {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
     }
+    
+    // Disable caching to always run fresh tests
+    outputs.upToDateWhen { false }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
