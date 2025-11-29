@@ -12,9 +12,9 @@ echo ""
 echo "📋 Step 1/5: Checking Java installation..."
 if command -v java &> /dev/null; then
     JAVA_VERSION=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
-    echo "✅ Java found: version $JAVA_VERSION"
+    echo "Java found: version $JAVA_VERSION"
 else
-    echo "❌ Java not found! Please install Java 17"
+    echo "Java not found! Please install Java 17"
     exit 1
 fi
 echo ""
@@ -24,41 +24,41 @@ echo "📋 Step 2/5: Enabling Safari WebDriver..."
 echo "This may ask for your password..."
 sudo safaridriver --enable
 if [ $? -eq 0 ]; then
-    echo "✅ Safari WebDriver enabled"
+    echo "Safari WebDriver enabled"
 else
-    echo "⚠️  Safari WebDriver may need manual enabling"
-    echo "   Please run: sudo safaridriver --enable"
+    echo "Safari WebDriver may need manual enabling"
+    echo "Please run: sudo safaridriver --enable"
 fi
 echo ""
 
 # Step 3: Download Selenium Grid
-echo "📋 Step 3/5: Checking Selenium Server..."
+echo "Step 3/5: Checking Selenium Server..."
 if [ ! -f "selenium-server.jar" ]; then
-    echo "📥 Downloading Selenium Server 4.21.0..."
+    echo "Downloading Selenium Server 4.21.0..."
     echo "   This may take a minute..."
     curl -L https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.21.0/selenium-server-4.21.0.jar -o selenium-server.jar
-    echo "✅ Selenium Server downloaded"
+    echo "Selenium Server downloaded"
 else
-    echo "✅ Selenium Server already present"
+    echo "Selenium Server already present"
 fi
 echo ""
 
 # Step 4: Check Chrome
-echo "📋 Step 4/5: Checking Chrome installation..."
+echo "Step 4/5: Checking Chrome installation..."
 if [ -d "/Applications/Google Chrome.app" ]; then
-    echo "✅ Chrome browser found"
+    echo "Chrome browser found"
 else
-    echo "⚠️  Chrome not found at standard location"
+    echo "Chrome not found at standard location"
     echo "   Please ensure Chrome is installed"
 fi
 echo ""
 
 # Step 5: Check Safari
-echo "📋 Step 5/5: Checking Safari..."
+echo "Step 5/5: Checking Safari..."
 if [ -d "/Applications/Safari.app" ]; then
-    echo "✅ Safari browser found"
+    echo "Safari browser found"
     echo ""
-    echo "⚠️  IMPORTANT: Manual Safari Setup Required"
+    echo "IMPORTANT: Manual Safari Setup Required"
     echo "   1. Open Safari"
     echo "   2. Safari > Settings > Advanced"
     echo "   3. Check '☑ Show features for web developers'"
@@ -66,7 +66,7 @@ if [ -d "/Applications/Safari.app" ]; then
     echo ""
     read -p "Press ENTER when Safari is configured..."
 else
-    echo "❌ Safari not found!"
+    echo "Safari not found!"
 fi
 echo ""
 
