@@ -9,7 +9,7 @@ echo "=========================================="
 echo ""
 
 # Check if Selenium Grid is running
-echo "🔍 Checking if Selenium Grid is running..."
+echo "Checking if Selenium Grid is running..."
 if ! curl -s http://localhost:4444/status > /dev/null 2>&1; then
     echo "Selenium Grid is not running!"
     echo ""
@@ -23,14 +23,14 @@ echo "Selenium Grid is running"
 echo ""
 
 # Check if application is running
-echo "🔍 Checking if application is running on http://localhost:4200..."
+echo "Checking if application is running on http://localhost:4200..."
 if ! curl -s http://localhost:4200 > /dev/null 2>&1; then
     echo "Warning: Application may not be running on http://localhost:4200"
     echo "   Make sure your Angular app is running!"
     echo ""
 fi
 
-echo "🧪 Starting tests on Chrome and Safari in parallel..."
+echo "Starting tests on Chrome and Safari in parallel..."
 echo ""
 echo "Monitor your tests at: http://localhost:4444/ui"
 echo "=========================================="
