@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="GreenGrub Cross-Browser Suite" parallel="tests" thread-count="2">
+    
+    <!-- Chrome Browser Test -->
+    <test name="Donation Tests - Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.greengrub.tests.CreateDonationTest"/>
+        </classes>
+    </test>
+    
+    <!-- Safari Browser Test -->
+    <test name="Donation Tests - Safari">
+        <parameter name="browser" value="safari"/>
+        <classes>
+            <class name="com.greengrub.tests.CreateDonationTest"/>
+        </classes>
+    </test>
+    
+</suite>

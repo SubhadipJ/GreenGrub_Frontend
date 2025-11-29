@@ -1,0 +1,145 @@
+Initialized native services in: /Users/I528797/.gradle/native
+Initialized jansi services in: /Users/I528797/.gradle/native
+The client will now receive all logging from the daemon (pid: 79232). The daemon log file: /Users/I528797/.gradle/daemon/8.14.3/daemon-79232.out.log
+Starting 25th build in daemon [uptime: 1 hrs 42 mins 43.445 secs, performance: 100%, GC rate: 0.00/s, heap usage: 0% of 512 MiB, non-heap usage: 27% of 384 MiB]
+Using 12 worker leases.
+Calculating task graph as no cached configuration is available for tasks: testGrid
+Now considering [/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Resolved plugin [id: 'org.gradle.toolchains.foojay-resolver-convention', version: '0.10.0']
+Settings evaluated using settings file '/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/settings.gradle'.
+Projects loaded. Root project using build file '/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/build.gradle'.
+Included projects: [root project 'greengrub-selenium', project ':app']
+
+> Configure project :
+Evaluating root project 'greengrub-selenium' using build file '/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/build.gradle'.
+
+> Configure project :app
+Evaluating project ':app' using build file '/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build.gradle'.
+Resolved plugin [id: 'application']
+All projects evaluated.
+Task name matched 'testGrid'
+Selected primary task 'testGrid' from project :
+Starting process 'command '/usr/libexec/java_home''. Working directory: /Users/I528797/.gradle/daemon/8.14.3 Command: /usr/libexec/java_home -V
+Successfully started process 'command '/usr/libexec/java_home''
+Tasks to be executed: [task ':app:compileJava', task ':app:processResources', task ':app:classes', task ':app:compileTestJava', task ':app:processTestResources', task ':app:testClasses', task ':app:testGrid']
+Tasks that were excluded: []
+Ignoring listeners of task graph ready event, as this build (:) has already executed work.
+Resolve mutations for :app:compileJava (Thread[Execution worker,5,main]) started.
+Resolve mutations for :app:processResources (Thread[Execution worker Thread 2,5,main]) started.
+Resolve mutations for :app:processTestResources (Thread[Execution worker Thread 3,5,main]) started.
+:app:processTestResources (Thread[Execution worker Thread 3,5,main]) started.
+:app:processResources (Thread[Execution worker Thread 2,5,main]) started.
+:app:compileJava (Thread[Execution worker,5,main]) started.
+
+> Task :app:processResources NO-SOURCE
+Skipping task ':app:processResources' as it has no source files and no previous output files.
+
+> Task :app:compileJava UP-TO-DATE
+Caching disabled for task ':app:compileJava' because:
+  Build cache is disabled
+Skipping task ':app:compileJava' as it is up-to-date.
+Resolve mutations for :app:classes (Thread[Execution worker,5,main]) started.
+:app:classes (Thread[Execution worker,5,main]) started.
+
+> Task :app:classes UP-TO-DATE
+Skipping task ':app:classes' as it has no actions.
+Resolve mutations for :app:compileTestJava (Thread[Execution worker,5,main]) started.
+:app:compileTestJava (Thread[Execution worker,5,main]) started.
+
+> Task :app:processTestResources
+Caching disabled for task ':app:processTestResources' because:
+  Build cache is disabled
+  Not worth caching
+Task ':app:processTestResources' is not up-to-date because:
+  Output property 'destinationDir' file /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/resources/test has been removed.
+  Output property 'destinationDir' file /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/resources/test/testng-cross-browser.xml has been removed.
+  Output property 'destinationDir' file /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/resources/test/testng-grid.xml has been removed.
+  and more...
+
+> Task :app:compileTestJava
+Caching disabled for task ':app:compileTestJava' because:
+  Build cache is disabled
+Task ':app:compileTestJava' is not up-to-date because:
+  Output property 'destinationDirectory' file /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/classes/java/test has been removed.
+  Output property 'destinationDirectory' file /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/classes/java/test/com has been removed.
+  Output property 'destinationDirectory' file /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/classes/java/test/com/greengrub has been removed.
+  and more...
+The input changes require a full rebuild for incremental task ':app:compileTestJava'.
+Compilation mode: in-process compilation
+Full recompilation is required because no incremental change information is available. This is usually caused by clean builds or changing compiler arguments.
+Compiling with toolchain '/Library/Java/JavaVirtualMachines/sapmachine-17.jdk/Contents/Home'.
+Compiling with JDK Java compiler API.
+Class dependency analysis for incremental compilation took 0.005 secs.
+Created classpath snapshot for incremental compilation in 0.004 secs.
+Resolve mutations for :app:testClasses (Thread[Execution worker,5,main]) started.
+:app:testClasses (Thread[Execution worker,5,main]) started.
+
+> Task :app:testClasses
+Skipping task ':app:testClasses' as it has no actions.
+Resolve mutations for :app:testGrid (Thread[Execution worker,5,main]) started.
+:app:testGrid (Thread[Execution worker,5,main]) started.
+Gradle Test Executor 17 started executing tests.
+
+> Task :app:testGrid
+Caching disabled for task ':app:testGrid' because:
+  Build cache is disabled
+Task ':app:testGrid' is not up-to-date because:
+  Task.upToDateWhen is false.
+Starting process 'Gradle Test Executor 17'. Working directory: /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app Command: /Library/Java/JavaVirtualMachines/sapmachine-17.jdk/Contents/Home/bin/java -Dorg.gradle.internal.worker.tmpdir=/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/tmp/testGrid/work @/Users/I528797/.gradle/.tmp/gradle-worker-classpath12612932099649997511txt -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=IN -Duser.language=en -Duser.variant -ea worker.org.gradle.process.internal.worker.GradleWorkerMain 'Gradle Test Executor 17'
+Successfully started process 'Gradle Test Executor 17'
+
+Gradle Test Executor 17 STANDARD_ERROR
+    SLF4J(W): No SLF4J providers were found.
+    SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+    SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+
+GreenGrub Grid Suite > Chrome Browser Test > com.greengrub.tests.CreateDonationTest STANDARD_ERROR
+    Nov 29, 2025 9:38:19 PM org.openqa.selenium.remote.tracing.opentelemetry.OpenTelemetryTracer createTracer
+    INFO: Using OpenTelemetry for tracing
+
+GreenGrub Grid Suite > Chrome Browser Test > com.greengrub.tests.CreateDonationTest STANDARD_OUT
+    Started test on chrome browser
+
+GreenGrub Grid Suite > Chrome Browser Test > com.greengrub.tests.CreateDonationTest > createDonationWithFoods STANDARD_OUT
+    [chrome] URL Loaded: http://localhost:4200/createDonation
+    Started test on safari browser
+
+GreenGrub Grid Suite > Safari Browser Test > com.greengrub.tests.CreateDonationTest > createDonationWithFoods STANDARD_OUT
+    [safari] URL Loaded: http://localhost:4200/createDonation
+    [chrome] Test completed successfully!
+
+GreenGrub Grid Suite > Chrome Browser Test STANDARD_OUT
+    [chrome] Closing browser
+
+GreenGrub Grid Suite STANDARD_OUT
+    [safari] Test completed successfully!
+
+GreenGrub Grid Suite > Safari Browser Test STANDARD_OUT
+    [safari] Closing browser
+
+Gradle Test Executor 17 finished executing tests.
+
+> Task :app:testGrid
+Finished generating test XML results (0.003 secs) into: /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/test-results/testGrid
+Generating HTML test report...
+Finished generating test html results (0.01 secs) into: /Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium/app/build/reports/tests/testGrid
+
+0 problems were found storing the configuration cache.
+
+See the complete report at file:///Users/I528797/Desktop/Bits/Sem-5%20Project/GreenGrabFrontend/greengrub-selenium/build/reports/configuration-cache/a9rai5goe88hclaxbd7wppgzi/56gtfyufskv6zi5jd8ik9sugf/configuration-cache-report.html
+
+[Incubating] Problems report is available at: file:///Users/I528797/Desktop/Bits/Sem-5%20Project/GreenGrabFrontend/greengrub-selenium/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 25s
+4 actionable tasks: 3 executed, 1 up-to-date
+Watched directory hierarchies: [/Users/I528797/Desktop/Bits/Sem-5 Project/GreenGrabFrontend/greengrub-selenium]
+Configuration cache entry stored.

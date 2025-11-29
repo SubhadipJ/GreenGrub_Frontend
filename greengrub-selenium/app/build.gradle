@@ -44,6 +44,22 @@ test {
     outputs.upToDateWhen { false }
 }
 
+// Add a separate task for running Grid tests
+task testGrid(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/testng-grid.xml'
+    }
+    
+    // Disable caching to always run fresh tests
+    outputs.upToDateWhen { false }
+    
+    // Show test output in console
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
